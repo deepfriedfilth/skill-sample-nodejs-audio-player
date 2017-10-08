@@ -4,6 +4,9 @@
       "intent": "PlayAudio"
     },
     {
+      "intent": "PlayLocal"
+    },
+    {
       "intent": "AMAZON.PauseIntent"
     },
     {

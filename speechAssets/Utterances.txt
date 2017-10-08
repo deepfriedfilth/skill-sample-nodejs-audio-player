@@ -13,3 +13,9 @@ PlayAudio to start podcast
 PlayAudio to start the podcast
 PlayAudio to start playing the podcast
 PlayAudio to play the podcast
+PlayLocal play milwaukee music
+PlayLocal play local music
+PlayLocal begin playing milwaukee music
+PlayLocal begin playing local music
+PlayLocal to start milwaukee music
+PlayLocal to start local music
