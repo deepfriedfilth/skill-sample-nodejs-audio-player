@@ -7,6 +7,9 @@
       "intent": "PlayLocal"
     },
     {
+      "intent": "WhatSong"
+    },
+    {
       "intent": "AMAZON.PauseIntent"
     },
     {

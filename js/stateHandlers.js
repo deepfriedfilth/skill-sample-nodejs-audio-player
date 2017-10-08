@@ -4,6 +4,10 @@ var Alexa = require('alexa-sdk');
 var audioData = require('./audioAssets');
 var constants = require('./constants');
 var introMess = 'Welcome to the Radio Milwaukee. You can say, "play the audio" to begin the stream, or "play local music" to play our 414music.fm stream.';
+var songListFeeds = [
+    "http://radiomilwaukee.org/playlistinfo.php",
+    "https://s3.amazonaws.com/radiomilwaukee-playlist/WYMSHD2HIS.XML"
+]
 
 var stateHandlers = {
     startModeIntentHandlers : Alexa.CreateStateHandler(constants.states.START_MODE, {
@@ -338,6 +342,31 @@ var controller = function () {
             this.attributes['offsetInMilliseconds'] = 0;
             this.attributes['playbackIndexChanged'] = true;
             controller.play.call(this);
+        },
+        whatSong: function() {
+          var surl = songListFeeds[this.attributes['index']];
+          
+          https.get(surl, function(res) {
+              var body = "";
+              
+              res.on("data", function(chunk) {
+                  body += chunk;
+              });
+              
+              res.on("end", function() {
+                  try {
+                      var song = JSON.parse(body).songs[0];
+                      var songInfo = "";
+                      songInfo = "This song is: " + song.title + " by " + song.artist;
+                  }
+                  catch (e) {
+                      songInfo = "I'm sorry, the song information is missing";
+                  }
+                  this.response.speak(songInfo)
+              });
+          }).on("error", function(e) {
+              this.response.speak("There was an error, please try again later");
+          });
         }
     }
 }();
