@@ -41,6 +41,22 @@ var stateHandlers = {
             }
             controller.play.call(this);
         },
+        // Play 414music.fm stream...
+        'PlayLocal' : function () {
+            if (!this.attributes['playOrder']) {
+                // Initialize Attributes if undefined.
+                this.attributes['playOrder'] = Array.apply(null, {length: audioData.length}).map(Number.call, Number);
+                this.attributes['index'] = 1;
+                this.attributes['offsetInMilliseconds'] = 0;
+                this.attributes['loop'] = true;
+                this.attributes['shuffle'] = false;
+                this.attributes['playbackIndexChanged'] = true;
+                //  Change state to START_MODE
+                this.handler.state = constants.states.START_MODE;
+            }
+            controller.play.call(this);
+        },
+
         'AMAZON.HelpIntent' : function () {
             var message = introMess;
             this.response.speak(message).listen(message);
