@@ -4,7 +4,7 @@
 var audioData = [
     {
         'title' : '88nine Stream',
-        'url' : 'http://wyms.streamguys1.com/live'
+        'url' : 'https://wyms.streamguys1.com/live'
     }
 ];
 
