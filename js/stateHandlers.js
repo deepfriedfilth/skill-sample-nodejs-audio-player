@@ -1,13 +1,14 @@
 'use strict';
 
+const https = require("https");
 var Alexa = require('alexa-sdk');
 var audioData = require('./audioAssets');
 var constants = require('./constants');
 var introMess = 'Welcome to the Radio Milwaukee. You can say, "play the audio" to begin the stream, or "play local music" to play our 414music.fm stream.';
 var songListFeeds = [
-    "http://radiomilwaukee.org/playlistinfo.php",
+    "https://radiomilwaukee.org/playlistinfo.php",
     "https://s3.amazonaws.com/radiomilwaukee-playlist/WYMSHD2HIS.XML"
-]
+];
 
 var stateHandlers = {
     startModeIntentHandlers : Alexa.CreateStateHandler(constants.states.START_MODE, {
@@ -79,6 +80,7 @@ var stateHandlers = {
         'SessionEndedRequest' : function () {
             // No session ended logic
         },
+        'WhatSong' : function () { controller.whatSong(); },
         'Unhandled' : function () {
             var message = 'Sorry, I could not understand. Please say, play the audio, to begin the audio.';
             this.response.speak(message).listen(message);
@@ -138,6 +140,7 @@ var stateHandlers = {
         'SessionEndedRequest' : function () {
             // No session ended logic
         },
+        'WhatSong' : function () { controller.whatSong(); },
         'Unhandled' : function () {
             var message = 'Sorry, I could not understand. You can say, Next or Previous to navigate through the playlist.';
             this.response.speak(message).listen(message);
@@ -186,6 +189,7 @@ var stateHandlers = {
         'SessionEndedRequest' : function () {
             // No session ended logic
         },
+        'WhatSong' : function () { controller.whatSong(); },
         'Unhandled' : function () {
             var message = 'Sorry, this is not a valid command. Please say help to hear what you can say.';
             this.response.speak(message).listen(message);
@@ -344,7 +348,7 @@ var controller = function () {
             controller.play.call(this);
         },
         whatSong: function() {
-          var surl = songListFeeds[this.attributes['index']];
+          var surl = "https://radiomilwaukee.org/playlistinfo.php"; //songListFeeds[this.attributes['index']];
           
           https.get(surl, function(res) {
               var body = "";

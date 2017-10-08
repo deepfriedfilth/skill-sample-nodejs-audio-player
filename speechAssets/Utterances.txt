@@ -19,3 +19,6 @@ PlayLocal begin playing milwaukee music
 PlayLocal begin playing local music
 PlayLocal to start milwaukee music
 PlayLocal to start local music
+WhatSong what song is this
+WhatSong who this
+WhatSong who dis
