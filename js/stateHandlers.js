@@ -80,7 +80,7 @@ var stateHandlers = {
         'SessionEndedRequest' : function () {
             // No session ended logic
         },
-        'WhatSong' : function () { controller.whatSong(); },
+        'WhatSong' : function () { controller.whatSong.call(this); },
         'Unhandled' : function () {
             var message = 'Sorry, I could not understand. Please say, play the audio, to begin the audio.';
             this.response.speak(message).listen(message);
@@ -189,7 +189,7 @@ var stateHandlers = {
         'SessionEndedRequest' : function () {
             // No session ended logic
         },
-        'WhatSong' : function () { controller.whatSong(); },
+        'WhatSong' : function () { controller.whatSong.call(this); },
         'Unhandled' : function () {
             var message = 'Sorry, this is not a valid command. Please say help to hear what you can say.';
             this.response.speak(message).listen(message);
