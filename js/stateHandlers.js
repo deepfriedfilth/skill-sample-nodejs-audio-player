@@ -112,6 +112,7 @@ var stateHandlers = {
             this.emit(':responseReady');
         },
         'PlayAudio' : function () { controller.play.call(this) },
+        'PlayLocal' : function () { controller.play.call(this) },
         'AMAZON.NextIntent' : function () { controller.playNext.call(this) },
         'AMAZON.PreviousIntent' : function () { controller.playPrevious.call(this) },
         'AMAZON.PauseIntent' : function () { controller.stop.call(this) },
